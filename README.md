@@ -35,13 +35,18 @@ Set `theme = ["eggtart", "PaperMod"]` in `hugo.toml`. Eggtart must come first.
 Both dependencies are pinned by your site's Git submodule commits. See `exampleSite/`
 for minimal configuration and fictional content. Do not use the extension without PaperMod.
 
-## Content
+## Article organization
 
 - Add `series = ["example"]` and `series_part = 1` to a post. Add series metadata at
   `content/series/example/_index.md`. Series navigation uses the first assigned series.
 - Set `archived = true` to hide a published post from the home page. Create
   `content/archive.md` with `layout = "archived"` and `url = "/archive/"`.
   An archive link appears first on the Tags page. Tags, RSS, and direct URLs remain accessible.
+
+## Markdown rendering
+
+Write article text using standard Markdown. The theme also supports:
+
 - Use `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, or `> [!CAUTION]`.
   Custom titles are supported; folding signs are currently rendered as static callouts.
 - Set `math = true` for dollar-delimited MathJax. Set `mermaid = true` for Mermaid fences.
