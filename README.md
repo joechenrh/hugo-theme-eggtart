@@ -11,6 +11,14 @@ personal articles, credentials, deployment scripts, or site-specific CDN address
 Features: restrained light/dark styling, article descriptions, ordered series,
 selective archives, GitHub-style Markdown alerts, MathJax, and Mermaid.
 
+## Screenshots
+
+Screenshots of the public example article using system fonts.
+
+| Light | Dark |
+| --- | --- |
+| ![Eggtart theme in light mode](images/screenshot.png) | ![Eggtart theme in dark mode](images/screenshot-dark.png) |
+
 ## Install
 
 Requires Hugo 0.146 or later. Developed with Hugo Extended 0.164.0.
