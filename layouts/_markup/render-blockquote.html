@@ -1,0 +1,14 @@
+{{- if eq .Type "alert" -}}
+  {{- $title := .AlertTitle | default (title .AlertType) -}}
+<blockquote class="md-alert md-alert-{{ .AlertType }}">
+  <p class="md-alert-title">
+    {{- if eq .AlertType "tip" }}
+    <svg class="md-alert-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M8.5 14.5a7 7 0 1 1 7 0c-.8.6-1.2 1.4-1.3 2.5h-4.4c-.1-1.1-.5-1.9-1.3-2.5Z"/><path d="M12 3v2M5.6 5.6 7 7M18.4 5.6 17 7"/></svg>
+    {{- end }}
+    {{ $title }}
+  </p>
+  {{ .Text }}
+</blockquote>
+{{- else -}}
+<blockquote>{{ .Text }}</blockquote>
+{{- end -}}

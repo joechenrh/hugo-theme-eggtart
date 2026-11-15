@@ -1,0 +1,13 @@
+{{- $pages := .pages -}}
+<ol class="series-parts">
+  {{- range $index, $page := $pages }}
+  {{- $part := $page.Params.series_part | default (add $index 1) -}}
+  <li class="series-part">
+    <span class="series-part-index">{{ printf "%02d" $part }}</span>
+    <a class="series-part-title" href="{{ $page.RelPermalink }}">{{ $page.LinkTitle }}</a>
+    {{- with $page.Description }}
+    <span class="series-part-desc">{{ . | markdownify | plainify | htmlUnescape }}</span>
+    {{- end }}
+  </li>
+  {{- end }}
+</ol>

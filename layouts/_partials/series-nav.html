@@ -1,0 +1,37 @@
+{{- $seriesTerms := .GetTerms "series" -}}
+{{- $current := . -}}
+{{- with $seriesTerms }}
+  {{- $term := index . 0 -}}
+  {{- $pages := $term.Pages.ByParam "series_part" -}}
+  {{- $scratch := newScratch -}}
+  {{- range $index, $page := $pages }}
+    {{- if eq $page.Permalink $current.Permalink }}
+      {{- $scratch.Set "position" (add $index 1) -}}
+    {{- end }}
+  {{- end }}
+  {{- $position := $scratch.Get "position" | default 1 -}}
+  {{- $currentIndex := sub $position 1 -}}
+  <div class="series-meta">
+    <span class="series-label">Series</span>
+    <a class="series-link" href="{{ $term.RelPermalink }}">{{ $term.LinkTitle }}</a>
+    <span class="series-state">Part {{ $position }} of {{ len $pages }}</span>
+  </div>
+  {{- if gt (len $pages) 1 }}
+  <nav class="series-nav" aria-label="Series navigation">
+    {{- if gt $currentIndex 0 }}
+    {{- $prev := index $pages (sub $currentIndex 1) -}}
+    <a class="prev" href="{{ $prev.Permalink }}">
+      <span class="title">Previous</span>
+      <span>{{ $prev.LinkTitle }}</span>
+    </a>
+    {{- end }}
+    {{- if lt $currentIndex (sub (len $pages) 1) }}
+    {{- $next := index $pages (add $currentIndex 1) -}}
+    <a class="next" href="{{ $next.Permalink }}">
+      <span class="title">Next</span>
+      <span>{{ $next.LinkTitle }}</span>
+    </a>
+    {{- end }}
+  </nav>
+  {{- end }}
+{{- end }}

@@ -1,0 +1,26 @@
+{{- define "main" }}
+{{- if .Title }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}
+  <div class="post-description">{{ . }}</div>
+  {{- end }}
+</header>
+{{- end }}
+<ul class="terms-tags">
+  {{- $type := .Type }}
+  {{- if eq .Type "tags" }}
+    {{- $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{- $archived := where $posts "Params.archived" true }}
+    {{- with site.GetPage "/archive" }}
+    <li class="archive-term"><a href="{{ .RelPermalink }}">archive <sup><strong><sup>{{ len $archived }}</sup></strong></sup></a></li>
+    {{- end }}
+  {{- end }}
+  {{- range .Data.Terms.Alphabetical }}
+    {{- $count := .Count }}
+    {{- with site.GetPage (printf "/%s/%s" $type .Name) }}
+    <li><a href="{{ .Permalink }}">{{ .LinkTitle }} <sup><strong><sup>{{ $count }}</sup></strong></sup></a></li>
+    {{- end }}
+  {{- end }}
+</ul>
+{{- end }}

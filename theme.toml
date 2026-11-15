@@ -1,0 +1,15 @@
+name = "Eggtart"
+license = "MIT"
+licenselink = "https://github.com/joechenrh/hugo-theme-eggtart/blob/main/LICENSE"
+description = "A restrained PaperMod extension with series, selective archives, and Markdown alerts."
+homepage = "https://github.com/joechenrh/hugo-theme-eggtart"
+tags = ["blog", "minimal", "responsive", "dark mode"]
+min_version = "0.146.0"
+
+[author]
+name = "joechenrh"
+
+[original]
+name = "PaperMod"
+homepage = "https://github.com/adityatelange/hugo-PaperMod"
+repo = "https://github.com/adityatelange/hugo-PaperMod"

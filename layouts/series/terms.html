@@ -1,0 +1,38 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}
+  <div class="post-description">{{ . | markdownify }}</div>
+  {{- end }}
+  {{- with .Content }}
+  <div class="post-content md-content">
+    {{ . }}
+  </div>
+  {{- end }}
+</header>
+
+{{- $seriesTerms := .Data.Terms.ByCount }}
+{{- if $seriesTerms }}
+  {{- range $seriesTerms }}
+  {{- $termPage := .Page -}}
+  <article class="series-group">
+    <header class="series-group-header">
+      <h2><a href="{{ $termPage.RelPermalink }}">{{ $termPage.LinkTitle }}</a></h2>
+      <div class="series-group-meta">{{ len .Pages }} posts</div>
+      {{- with $termPage.Description }}
+      <div class="series-group-desc">{{ . | markdownify }}</div>
+      {{- end }}
+    </header>
+    {{- $pages := .Pages.ByParam "series_part" -}}
+    {{- partial "series-parts.html" (dict "pages" $pages) -}}
+  </article>
+  {{- end }}
+{{- else }}
+  <div class="post-content md-content">
+    <p>No series yet.</p>
+  </div>
+{{- end }}
+
+{{- end }}{{/* end main */}}

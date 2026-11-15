@@ -1,0 +1,35 @@
+baseURL = "https://example.org/"
+title = "Example Notebook"
+theme = ["eggtart", "PaperMod"]
+
+[params]
+mainSections = ["posts"]
+defaultTheme = "auto"
+disableSpecial1stPost = true
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+series = "series"
+
+[[menus.main]]
+name = "posts"
+url = "/"
+weight = 10
+
+[[menus.main]]
+name = "series"
+url = "/series/"
+weight = 20
+
+[[menus.main]]
+name = "tags"
+url = "/tags/"
+weight = 30
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [["$$", "$$"]]
+inline = [["$", "$"]]

@@ -1,0 +1,25 @@
+{{- define "main" }}
+
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- with .Description }}
+  <div class="post-description">{{ . | markdownify }}</div>
+  {{- end }}
+  {{- with .Content }}
+  <div class="post-content md-content">
+    {{ . }}
+  </div>
+  {{- end }}
+</header>
+
+{{- $pages := .Pages.ByParam "series_part" -}}
+{{- if $pages }}
+  {{- partial "series-parts.html" (dict "pages" $pages) -}}
+{{- else }}
+  <div class="post-content md-content">
+    <p>No posts in this series yet.</p>
+  </div>
+{{- end }}
+
+{{- end }}{{/* end main */}}
