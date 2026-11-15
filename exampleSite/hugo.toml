@@ -14,17 +14,17 @@ series = "series"
 
 [[menus.main]]
 name = "posts"
-url = "/"
+url = ""
 weight = 10
 
 [[menus.main]]
 name = "series"
-url = "/series/"
+url = "series/"
 weight = 20
 
 [[menus.main]]
 name = "tags"
-url = "/tags/"
+url = "tags/"
 weight = 30
 
 [markup.goldmark.extensions.passthrough]

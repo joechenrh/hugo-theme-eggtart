@@ -1,5 +1,10 @@
 # Eggtart
 
+[Live demo](https://joechenrh.github.io/hugo-theme-eggtart/)
+
+The demo uses only the fictional content in `exampleSite/` and system fonts.
+GitHub Actions rebuilds it on each push to `main`.
+
 A Hugo theme extension built on PaperMod. System fonts by default; no bundled fonts,
 personal articles, credentials, deployment scripts, or site-specific CDN addresses.
 

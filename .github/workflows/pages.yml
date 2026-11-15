@@ -1,0 +1,57 @@
+name: Deploy theme demo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Install Hugo
+        env:
+          HUGO_VERSION: "0.164.0"
+        run: |
+          mkdir -p "$RUNNER_TEMP/hugo"
+          curl -fsSL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz" | tar -xz -C "$RUNNER_TEMP/hugo"
+          echo "$RUNNER_TEMP/hugo" >> "$GITHUB_PATH"
+      - name: Prepare themes
+        run: |
+          mkdir -p "$RUNNER_TEMP/themes"
+          ln -s "$GITHUB_WORKSPACE" "$RUNNER_TEMP/themes/eggtart"
+          git init "$RUNNER_TEMP/themes/PaperMod"
+          git -C "$RUNNER_TEMP/themes/PaperMod" remote add origin https://github.com/adityatelange/hugo-PaperMod.git
+          git -C "$RUNNER_TEMP/themes/PaperMod" fetch --depth 1 origin 154d006e0182dfc7da38008323976b02e6bfab4a
+          git -C "$RUNNER_TEMP/themes/PaperMod" checkout --detach FETCH_HEAD
+      - name: Build example site
+        env:
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          hugo --source exampleSite --themesDir "$RUNNER_TEMP/themes" --destination "$RUNNER_TEMP/public" --baseURL "${PAGES_BASE_URL}/" --minify
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/public
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
