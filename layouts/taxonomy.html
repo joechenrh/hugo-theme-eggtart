@@ -15,6 +15,9 @@
     {{- with site.GetPage "/archive" }}
     <li class="archive-term"><a href="{{ .RelPermalink }}">archive <sup><strong><sup>{{ len $archived }}</sup></strong></sup></a></li>
     {{- end }}
+    {{- with site.GetPage "/diary" }}
+    <li class="archive-term"><a href="{{ .RelPermalink }}">diary <sup><strong><sup>{{ len .RegularPages }}</sup></strong></sup></a></li>
+    {{- end }}
   {{- end }}
   {{- range .Data.Terms.Alphabetical }}
     {{- $count := .Count }}

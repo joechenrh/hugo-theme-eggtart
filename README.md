@@ -9,7 +9,8 @@ A Hugo theme extension built on PaperMod. System fonts by default; no bundled fo
 personal articles, credentials, deployment scripts, or site-specific CDN addresses.
 
 Features: restrained light/dark styling, article descriptions, ordered series,
-selective archives, GitHub-style Markdown alerts, MathJax, and Mermaid.
+selective archives, a date-based diary, compact article lists, GitHub-style Markdown alerts,
+MathJax, and Mermaid.
 
 ## Screenshots
 
@@ -42,6 +43,17 @@ for minimal configuration and fictional content. Do not use the extension withou
 - Set `archived = true` to hide a published post from the home page. Create
   `content/archive.md` with `layout = "archived"` and `url = "/archive/"`.
   An archive link appears first on the Tags page. Tags, RSS, and direct URLs remain accessible.
+
+## Diary
+
+Create `content/diary/_index.md` with a title, then create entries with
+`hugo new content diary/2024-01-03.md`. Each entry needs only a date and body;
+titles, descriptions, and tags are optional. The diary feed shows complete entries,
+newest first, with pagination and individual permalinks. Draft entries stay unpublished.
+
+Keep `[params] mainSections = ["posts"]` to exclude diary entries from the article
+homepage. The Tags page adds a `diary` link beside `archive` when the section exists.
+No diary navigation item is added automatically. See the fictional example entries.
 
 ## Markdown rendering
 

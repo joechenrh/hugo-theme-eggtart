@@ -1,0 +1,20 @@
+{{ define "main" }}
+<header class="page-header"><h1>{{ .Title }}</h1></header>
+{{ $paginator := .Paginate .RegularPages.ByDate.Reverse }}
+<div class="diary-feed">
+{{ range $paginator.Pages }}
+<article class="diary-entry">
+  <header class="diary-date"><a href="{{ .RelPermalink }}" aria-label="{{ .Date.Format "2006-01-02" }} 的日记"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time></a>{{ if .Draft }}<span class="diary-draft">草稿</span>{{ end }}</header>
+  <div class="post-content md-content">{{ .Content }}</div>
+</article>
+{{ else }}
+<div class="post-content"><p>还没有日记。</p></div>
+{{ end }}
+</div>
+{{ if gt $paginator.TotalPages 1 }}
+<footer class="page-footer"><nav class="pagination" aria-label="日记分页">
+{{ if $paginator.HasPrev }}<a class="prev" href="{{ $paginator.Prev.URL }}">上一页</a>{{ end }}
+{{ if $paginator.HasNext }}<a class="next" href="{{ $paginator.Next.URL }}">下一页</a>{{ end }}
+</nav></footer>
+{{ end }}
+{{ end }}

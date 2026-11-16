@@ -1,0 +1,10 @@
+{{ define "main" }}
+<article class="diary-single">
+  <header class="post-header">
+    <nav class="breadcrumbs"><a href="{{ .Parent.RelPermalink }}">日记</a></nav>
+    <h1 class="post-title"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></h1>
+    {{ if .Draft }}<span class="diary-draft">草稿</span>{{ end }}
+  </header>
+  <div class="post-content md-content">{{ .Content }}</div>
+</article>
+{{ end }}

@@ -1,0 +1,35 @@
+.menu a[href$="/index.xml"] span {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    min-width: 24px;
+    min-height: 24px;
+}
+
+.list .post-entry {
+    margin: 0;
+    padding: 14px 0;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    transition: none;
+}
+.list .post-entry:hover,
+.list .post-entry:focus-within { transform: none; }
+.list .entry-header h2 { font-size: 20px; line-height: 1.4; }
+.list .entry-content { margin: 4px 0; -webkit-line-clamp: 1; }
+.list .entry-series { font-size: 12px; }
+.list .entry-footer { font-size: 12px; }
+.list .post-entry .entry-link { border-radius: 0; }
+.list .post-entry:focus-within { outline: 2px solid var(--emphasis); outline-offset: 3px; }
+.list .page-footer { margin-top: 1.5rem; }
+
+.diary-entry { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+.diary-entry:first-child { padding-top: 0; }
+.diary-date { font-size: 14px; color: var(--secondary); font-variant-numeric: tabular-nums; }
+.diary-date a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.diary-entry .post-content { margin: 0.65rem 0 0; }
+.diary-entry .post-content > :last-child { margin-bottom: 0; }
+.diary-draft { margin-inline-start: 0.5rem; font-size: 12px; color: var(--secondary); }
+.diary-single .post-content { margin-top: 1rem; }
